@@ -15,5 +15,5 @@
                     </a>
 @endsection
 @section('footer')
-    Footer de la partie Formulaire
+    Footer de la partie Index
 @endsection
