@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ResaController::class,'index'])->name('index');
+Route::get('/create', [ResaController::class,'create'])->name('create');
+Route::post('/create', [ResaController::class,'store'])->name('store');
+Route::delete('/delete/{id}', [ResaController::class,'destroy'])->name('destroy');
+Route::get('/show/{id}', [ResaController::class,'show'])->name('show');
+Route::get('/edit/{id}', [ResaController::class,'edit'])->name('edit');
+Route::put('/update/{id}', [ResaController::class,'update'])->name('update');
 
-Route::get('/reservation', [ResaController::class,'index'])->name('index');
-Route::get('/reservation/create', [ResaController::class,'create'])->name('create');
-Route::post('/reservation/create', [ResaController::class,'store'])->name('store');

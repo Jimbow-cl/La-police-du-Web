@@ -18,17 +18,49 @@
                                     @endforeach
                                 @endif
                                 <div class="flex justify-center">
-                                <form  method="post" action="{{route('store')}}" style="display: flex;flex-direction: column;">
+                                 
+                                    @if ( $command == 'create')
+                                        <form style="display: flex;flex-direction: column;" method="post" action="{{route('store')}}">
+                                         @csrf
+                                    @endif
+                                    @if ( $command == 'update')
+                                        <form style="display: flex;flex-direction: column;"  method="post" action="{{route( 'update', $reservation['id']) }}">
+                                            @csrf
+                                            @method('put')
+                                    @endif
+                                  
+                                          
                                     <h3 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Name: </h3>
-                                    <input type="text" name="name" class=""/>
+                                    <input type="text" name="name" class=""
+                                        @if ( $command == 'create')
+                                        value="{{old('name')}}"
+                                        @endif
+                                        @if ( $command == 'update')
+                                        value="{{old('name', $reservation['name'])}}"
+                                        @endif
+                                        />
                                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                                     <h3 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Age: </h3>
-                                    <input type="text" name="age" class=""/>
+                                    <input type="text" name="age" class=""
+                                        @if ( $command == 'create')
+                                        value="{{old('age')}}"
+                                        @endif
+                                        @if ( $command == 'update')
+                                        value="{{old('age', $reservation['age'])}}"
+                                        @endif
+                                        />
                                     <h3 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Destination: </h3>
-                                    <select  name="travel" class="">
+                                    <select  name="travel" class=""
+                                        @if ( $command == 'create')
+                                        value="{{old('travel')}}"
+                                        @endif
+                                        @if ( $command == 'update')
+                                        value="{{old('travel', $reservation['travel'])}}"
+                                        @endif
+                                        />
                                         <option value="">✈️🧭.....selectionnez .....🧭✈️--</option>
-                                        <option value="la France">France 🥖</option>
-                                        <option value="l'Espagne">Espagne🥓</option>
+                                        <option value="France">France 🥖</option>
+                                        <option value="Espagne">Espagne🥓</option>
                                     </select>
                                     <input type="submit" name="submit" class="mt-6 w-full h-10 px-4 font-semibold text-gray-900 dark:text-white bg-indigo-500"/>
                                 </form>
