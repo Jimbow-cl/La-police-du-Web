@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [ResaController::class,'index'])->name('index');
 Route::get('/create', [ResaController::class,'create'])->name('create');
-Route::post('/create', [ResaController::class,'store'])->name('store');
+Route::post('/store', [ResaController::class,'store'])->name('store');
 Route::delete('/delete/{id}', [ResaController::class,'destroy'])->name('destroy');
 Route::get('/show/{id}', [ResaController::class,'show'])->name('show');
 Route::get('/edit/{id}', [ResaController::class,'edit'])->name('edit');
